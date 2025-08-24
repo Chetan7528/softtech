@@ -8,50 +8,33 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* HERO */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center text-white">
-        <Image
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-          alt="Tech background"
-          fill
-          className="object-cover -z-10"
-        />
-        <div className="bg-black/60 absolute inset-0 -z-10" />
-        <motion.h1
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-extrabold"
-        >
-          Empowering Your Digital Journey
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 text-lg md:text-2xl max-w-2xl"
-        >
-          We build world-class software solutions to help businesses thrive in
-          the modern era.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-8 flex space-x-4"
-        >
-          <Link
-            href="/contact"
-            className="px-6 py-3 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700"
-          >
-            Get Started
-          </Link>
-          <Link
-            href="/about"
-            className="px-6 py-3 border border-white rounded-lg font-semibold hover:bg-white/20"
-          >
-            Learn More
-          </Link>
-        </motion.div>
+      <section
+        className="relative h-screen flex items-center justify-center text-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c')",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 text-white px-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fadeInUp">
+            Build Smarter Software With Us 🚀
+          </h1>
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            We craft modern, scalable, and intelligent solutions for startups and enterprises.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg">
+              Get Started
+            </button>
+            <button className="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-xl shadow-lg">
+              Learn More
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* FEATURES */}
