@@ -568,6 +568,8 @@ const AboutUsPage = () => {
               >
                 <div className="relative mb-6">
                   <Image
+                    width={96}
+                    height={96}
                     src={member.image}
                     alt={member.name}
                     className="w-24 h-24 rounded-full mx-auto border-4 border-gradient-to-r from-blue-500 to-purple-600 object-cover group-hover:scale-105 transition-transform"
