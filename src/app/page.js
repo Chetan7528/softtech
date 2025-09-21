@@ -1,289 +1,578 @@
 "use client";
-
-import Image from "next/image";
-import { motion } from "motion/react"
+import React, { useState, useEffect } from "react";
+import {
+  ChevronRight,
+  Code,
+  Smartphone,
+  Globe,
+  Zap,
+  Users,
+  Award,
+  ArrowRight,
+  Menu,
+  X,
+  Star,
+  CheckCircle,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function Home() {
+const TechWebsite = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const navigate = useRouter();
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const services = [
+    {
+      icon: <Code className="w-8 h-8" />,
+      title: "Web Development",
+      description:
+        "Custom websites and web applications built with cutting-edge technologies",
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      icon: <Smartphone className="w-8 h-8" />,
+      title: "Mobile Apps",
+      description:
+        "Native and cross-platform mobile applications for iOS and Android",
+      color: "from-purple-500 to-pink-500",
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Cloud Solutions",
+      description: "Scalable cloud infrastructure and deployment solutions",
+      color: "from-green-500 to-emerald-500",
+    },
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: "AI Integration",
+      description:
+        "Smart automation and AI-powered solutions for your business",
+      color: "from-orange-500 to-red-500",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "CEO, TechStart",
+      content:
+        "Exceptional work! The team delivered beyond our expectations with innovative solutions.",
+      rating: 5,
+    },
+    {
+      name: "Michael Chen",
+      role: "CTO, DataFlow",
+      content:
+        "Professional, efficient, and highly skilled. Our project was completed on time and exceeded requirements.",
+      rating: 5,
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Founder, GrowthLab",
+      content:
+        "Outstanding technical expertise combined with excellent communication. Highly recommended!",
+      rating: 5,
+    },
+  ];
+
+  const features = [
+    "24/7 Support & Maintenance",
+    "Scalable Architecture",
+    "Security-First Approach",
+    "Performance Optimized",
+    "Cross-Platform Compatibility",
+    "Modern UI/UX Design",
+  ];
+
   return (
-    <div className="overflow-hidden">
-      {/* HERO */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <Image
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-          alt="Tech background"
-          fill
-          priority
-          className="object-cover"
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-[1px]" />
+    <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
+      {/* Navigation */}
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-gray-950/95 backdrop-blur-md border-b border-gray-800"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-8 h-8 rounded-lg flex items-center justify-center">
+                <Code className="w-5 h-5 text-white" />
+              </div>
+              <span className="ml-3 text-xl font-bold">SoftWare</span>
+            </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-6">
-          <motion.h1
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-extrabold leading-tight"
-          >
-            <span className="animated-gradient-text">
-              Building the Future of Software
-            </span>
-          </motion.h1>
+            {/* Desktop Menu */}
+            <div className="hidden md:block">
+              <div className="flex items-center space-x-8">
+                <Link href="/" className="text-blue-400 transition-colors">
+                  Home
+                </Link>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto"
-          >
-            We design and develop scalable, intelligent, and modern digital
-            solutions to help your business grow.
-          </motion.p>
+                <Link
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("services")
+                      .scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/aboutus"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Contact
+                </Link>
+                <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105">
+                  Get Started
+                </button>
+              </div>
+            </div>
 
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="mt-8 flex justify-center gap-4"
-          >
-            <a
-              href="/about"
-              className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium shadow-md hover:bg-indigo-700 transition"
-            >
-              Learn More
-            </a>
-            <a
-              href="/contact"
-              className="px-6 py-3 rounded-lg bg-white text-gray-900 font-medium shadow-md hover:bg-gray-200 transition"
-            >
-              Contact Us
-            </a>
-          </motion.div>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Curved Wave Separator */}
-        <svg
-          className="absolute bottom-[-1px] left-0 w-full h-24 md:h-32"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            className="block dark:hidden"
-            fill="#f8fafc"
-            d="M0,160L60,160C120,160,240,160,360,165.3C480,171,600,181,720,170.7C840,160,960,128,1080,106.7C1200,85,1320,75,1380,69.3L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-          />
-          <path
-            className="hidden dark:block"
-            fill="#0b1220"
-            d="M0,160L60,160C120,160,240,160,360,165.3C480,171,600,181,720,170.7C840,160,960,128,1080,106.7C1200,85,1320,75,1380,69.3L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-          />
-        </svg>
-      </section>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-gray-900 border-t border-gray-800">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <a
+                href="#home"
+                className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+              >
+                Home
+              </a>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("services")
+                    .scrollIntoView({ behavior: "smooth" });
+                }}
+                className="hover:text-blue-400 transition-colors"
+              >
+                Services
+              </a>
+              <a
+                href="#about"
+                className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+              >
+                About
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+              >
+                Contact
+              </a>
+              <button className="w-full text-left bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-2 rounded-md mt-2">
+                Get Started
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
 
-      {/* Features Section */}
-      <section className="-mt-4 bg-slate-50 dark:bg-slate-950 px-6 py-20 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-bold mb-10"
-        >
-          Why Choose{" "}
-          <span className="animated-gradient-text">Our Company?</span>
-        </motion.h2>
-
-        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {[
-            {
-              title: "🚀 Fast Development",
-              desc: "We deliver scalable applications at lightning speed using cutting-edge technologies.",
-            },
-            {
-              title: "🔒 Secure by Design",
-              desc: "Our solutions follow industry-leading security practices from day one.",
-            },
-            {
-              title: "🌍 Global Impact",
-              desc: "We create digital experiences that empower businesses worldwide.",
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.3, duration: 0.8 }}
-              className="p-6 rounded-xl shadow-lg bg-white dark:bg-slate-900"
-            >
-              <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
-            </motion.div>
-          ))}
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
+      >
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent)] animate-pulse"></div>
+          <div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent)] animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
         </div>
-      </section>
 
-
-      {/* FEATURES */}
-      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-900 text-center">
-        <h2 className="text-3xl font-bold mb-10">Our Services</h2>
-        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {[
-            {
-              title: "Web Development",
-              desc: "Modern and responsive websites with scalable architecture.",
-              img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-            },
-            {
-              title: "Mobile Apps",
-              desc: "Cross-platform apps designed with user experience in mind.",
-              img: "https://images.unsplash.com/photo-1551650975-87deedd944c3",
-            },
-            {
-              title: "Cloud Solutions",
-              desc: "Secure, scalable cloud infrastructure for global reach.",
-              img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            },
-          ].map((service, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg"
-            >
-              <Image
-                src={service.img}
-                alt={service.title}
-                width={400}
-                height={250}
-                className="rounded-md mb-4 object-cover"
-              />
-              <h3 className="text-xl font-semibold">{service.title}</h3>
-              <p className="mt-3 text-gray-600 dark:text-gray-300">
-                {service.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ABOUT PREVIEW */}
-      <section className="py-20 px-6 bg-white dark:bg-gray-950">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <Image
-            src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61"
-            alt="Team working"
-            width={600}
-            height={400}
-            className="rounded-lg shadow"
-          />
-          <div>
-            <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              We are a passionate team of developers, designers, and strategists
-              dedicated to delivering innovative digital products and solutions.
+        <div className="relative z-10 text-center max-w-5xl mx-auto">
+          <div className="animate-fadeInUp">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+              Innovating the Future
+              <span className="block text-3xl md:text-5xl lg:text-6xl mt-2">
+                with{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                  Smart Technology
+                </span>
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              We create cutting-edge digital solutions that transform businesses
+              and elevate user experiences through innovative technology and
+              exceptional design.
             </p>
-            <Link
-              href="/about"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700"
-            >
-              Learn More
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 hover:shadow-xl">
+                Start Your Project
+                <ArrowRight className="w-5 h-5 inline-block ml-2" />
+              </button>
+              <button
+                onClick={() => navigate.push("/aboutus")}
+                className="border-2 border-gray-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105"
+              >
+                View Our Work
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Animation Elements */}
+        <div
+          className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full animate-bounce"
+          style={{ animationDelay: "0s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 right-16 w-16 h-16 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-full animate-bounce"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/3 right-8 w-12 h-12 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full animate-bounce"
+          style={{ animationDelay: "2s" }}
+        ></div>
+      </section>
+
+      {/* Services Section */}
+      <section
+        id="services"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50"
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Our Services
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Comprehensive technology solutions tailored to your business needs
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div
+                  className={`w-16 h-16 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                >
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* PORTFOLIO */}
-      {/* <section className="py-20 px-6 bg-gray-100 dark:bg-gray-900 text-center">
-        <h2 className="text-3xl font-bold mb-10">Our Work</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[1, 2, 3].map((p) => (
-            <motion.div
-              key={p}
-              whileHover={{ scale: 1.05 }}
-              className="rounded-xl overflow-hidden shadow-lg"
-            >
-              <Image
-                src={`https://source.unsplash.com/random/800x600?tech,${p}`}
-                alt="Project"
-                width={400}
-                height={300}
-                className="object-cover"
-              />
-            </motion.div>
-          ))}
-        </div>
-      </section> */}
-
-      {/* TESTIMONIALS */}
-      <section className="py-20 px-6 bg-white dark:bg-gray-950 text-center">
-        <h2 className="text-3xl font-bold mb-10">What Our Clients Say</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            {
-              name: "Sarah Lee",
-              role: "CEO, StartUpX",
-              feedback:
-                "SoftTech transformed our vision into a powerful digital product.",
-              img: "https://randomuser.me/api/portraits/women/44.jpg",
-            },
-            {
-              name: "James Brown",
-              role: "CTO, FinEdge",
-              feedback:
-                "The team’s professionalism and skill set are unmatched.",
-              img: "https://randomuser.me/api/portraits/men/32.jpg",
-            },
-            {
-              name: "Anita Kumar",
-              role: "Founder, Healthify",
-              feedback:
-                "A reliable partner for all our software development needs.",
-              img: "https://randomuser.me/api/portraits/women/65.jpg",
-            },
-          ].map((t, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 bg-gray-50 dark:bg-gray-800 rounded-xl shadow"
-            >
-              <Image
-                src={t.img}
-                alt={t.name}
-                width={80}
-                height={80}
-                className="mx-auto rounded-full"
-              />
-              <p className="mt-4 text-gray-600 dark:text-gray-300">{t.feedback}</p>
-              <h3 className="mt-4 font-semibold">{t.name}</h3>
-              <span className="text-sm text-gray-500">{t.role}</span>
-            </motion.div>
-          ))}
+      {/* Features Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Why Choose{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                  SoftWare
+                </span>
+              </h2>
+              <p className="text-gray-400 text-lg mb-8">
+                We deliver exceptional results through innovative technology,
+                proven expertise, and unwavering commitment to your success.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl p-8 border border-gray-700">
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="bg-gray-800 h-16 rounded-lg animate-pulse"></div>
+                  <div
+                    className="bg-gray-800 h-16 rounded-lg animate-pulse"
+                    style={{ animationDelay: "0.5s" }}
+                  ></div>
+                  <div
+                    className="bg-gray-800 h-16 rounded-lg animate-pulse"
+                    style={{ animationDelay: "1s" }}
+                  ></div>
+                </div>
+                <div className="text-center">
+                  <div className="bg-gradient-to-r from-green-500 to-emerald-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-6 h-6" />
+                  </div>
+                  <p className="text-green-400 font-semibold">
+                    Project Completed Successfully
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-28 text-center text-white">
-        <Image
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-          alt="CTA background"
-          fill
-          className="object-cover -z-10"
-        />
-        <div className="absolute inset-0 bg-black/60 -z-10" />
-        <h2 className="text-3xl font-bold">Ready to Build Your Next Project?</h2>
-        <p className="mt-4">Let’s collaborate and turn your ideas into reality.</p>
-        <Link
-          href="/contact"
-          className="mt-6 inline-block px-6 py-3 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700"
-        >
-          Contact Us
-        </Link>
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              What Our Clients Say
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Trusted by businesses worldwide
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700 max-w-2xl mx-auto text-center">
+                      <div className="flex justify-center mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="w-5 h-5 text-yellow-400 fill-current"
+                          />
+                        ))}
+                      </div>
+                      <p className="text-gray-300 text-lg mb-6 italic">
+                        "{testimonial.content}"
+                      </p>
+                      <div>
+                        <p className="font-semibold text-white">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-gray-400">{testimonial.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-center mt-8 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    currentSlide === index ? "bg-blue-500" : "bg-gray-600"
+                  }`}
+                  onClick={() => setCurrentSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl p-12 border border-gray-700">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Start Your Next Project?
+            </h2>
+            <p className="text-gray-400 text-lg mb-8">
+              Let's discuss how we can help transform your ideas into reality
+              with cutting-edge technology solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => navigate.push("/contact")}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
+              >
+                Get Free Consultation
+              </button>
+              <button className="border-2 border-gray-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-800 transition-all">
+                View Portfolio
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 border-t border-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-8 h-8 rounded-lg flex items-center justify-center">
+                  <Code className="w-5 h-5 text-white" />
+                </div>
+                <span className="ml-3 text-xl font-bold">SoftWare</span>
+              </div>
+              <p className="text-gray-400">
+                Innovating the future with smart technology solutions.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Services</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Web Development
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Mobile Apps
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Cloud Solutions
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    AI Integration
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a
+                    href="/aboutus"
+                    className="hover:text-blue-400 transition-colors"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Connect</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/kaklotar-chetan/"
+                    className="hover:text-blue-400 transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400 transition-colors">
+                    Discord
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>
+              &copy; 2025 SoftWare. All rights reserved. Crafted with passion
+              for innovation.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 1s ease-out;
+        }
+      `}</style>
     </div>
   );
-}
+};
 
+export default TechWebsite;
