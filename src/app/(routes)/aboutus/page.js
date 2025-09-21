@@ -25,6 +25,8 @@ import {
   Github,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 function handleTimelineButton() {
   document.getElementById("timeline").scrollIntoView({ behavior: "smooth" });
@@ -222,24 +224,24 @@ const AboutUsPage = () => {
               <span className="ml-3 text-xl font-bold">SoftWare</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/" className="hover:text-blue-400 transition-colors">
+              <Link href="/" className="hover:text-blue-400 transition-colors">
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#services"
                 className="hover:text-blue-400 transition-colors"
               >
                 Services
-              </a>
-              <a href="/aboutus" className="text-blue-400">
+              </Link>
+              <Link href="/aboutus" className="text-blue-400">
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className="hover:text-blue-400 transition-colors"
               >
                 Contact
-              </a>
+              </Link>
               <button
                 onClick={() => navigate.push("/")}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
@@ -345,7 +347,7 @@ const AboutUsPage = () => {
                   clients across six continents.
                 </p>
                 <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                  Today, we're proud to be at the forefront of digital
+                  Today, we are proud to be at the forefront of digital
                   innovation, helping businesses transform their operations,
                   enhance customer experiences, and achieve sustainable growth
                   through smart technology solutions.
@@ -444,10 +446,10 @@ const AboutUsPage = () => {
                   <h3 className="text-2xl font-bold">🎯 Our Mission</h3>
                 </div>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  To empower businesses with reliable, scalable, and
+                  {`To empower businesses with reliable, scalable, and
                   user-friendly software solutions that create real impact in
-                  people's lives. We strive to bridge the gap between complex
-                  technology and practical business needs.
+                  people &apos s lives. We strive to bridge the gap between complex
+                  technology and practical business needs.`}
                 </p>
               </div>
             </div>
@@ -547,7 +549,7 @@ const AboutUsPage = () => {
               </span>
             </h2>
             <p className="text-gray-400 text-lg">
-              The brilliant minds behind SoftWare's success
+              {`The brilliant minds behind SoftWare's success`}
             </p>
           </div>
 
@@ -565,7 +567,7 @@ const AboutUsPage = () => {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="relative mb-6">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
                     className="w-24 h-24 rounded-full mx-auto border-4 border-gradient-to-r from-blue-500 to-purple-600 object-cover group-hover:scale-105 transition-transform"
@@ -597,37 +599,37 @@ const AboutUsPage = () => {
 
                   <div className="flex justify-center space-x-3">
                     {member.social.linkedin && (
-                      <a
+                      <Link
                         target="_blank"
                         href={member.social.linkedin}
                         className="text-gray-400 hover:text-blue-400 transition-colors"
                       >
                         <Linkedin className="w-4 h-4" />
-                      </a>
+                      </Link>
                     )}
                     {member.social.twitter && (
-                      <a
+                      <Link
                         href={member.social.twitter}
                         className="text-gray-400 hover:text-blue-400 transition-colors"
                       >
                         <Twitter className="w-4 h-4" />
-                      </a>
+                      </Link>
                     )}
                     {member.social.github && (
-                      <a
+                      <Link
                         href={member.social.github}
                         className="text-gray-400 hover:text-blue-400 transition-colors"
                       >
                         <Github className="w-4 h-4" />
-                      </a>
+                      </Link>
                     )}
                     {member.social.email && (
-                      <a
+                      <Link
                         href={`mailto:${member.social.email}`}
                         className="text-gray-400 hover:text-blue-400 transition-colors"
                       >
                         <Mail className="w-4 h-4" />
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>
@@ -717,9 +719,9 @@ const AboutUsPage = () => {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Let's collaborate and turn your vision into reality. Our team is
+              {`Let's collaborate and turn your vision into reality. Our team is
               excited to hear about your next project and discuss how we can
-              help you succeed.
+              help you succeed.`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105">
@@ -750,24 +752,24 @@ const AboutUsPage = () => {
                 empower businesses worldwide.
               </p>
               <div className="flex space-x-4">
-                <a
+                <Link
                   href="#"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   <Linkedin className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   <Twitter className="w-5 h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   <Github className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -775,24 +777,36 @@ const AboutUsPage = () => {
               <h3 className="font-semibold mb-4 text-white">Company</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Our Team
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Careers
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     News & Blog
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -801,24 +815,36 @@ const AboutUsPage = () => {
               <h3 className="font-semibold mb-4 text-white">Services</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Web Development
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Mobile Apps
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Cloud Solutions
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     AI Integration
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -849,15 +875,24 @@ const AboutUsPage = () => {
                 for innovation.
               </p>
               <div className="flex space-x-6 text-sm text-gray-400">
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Privacy Policy
-                </a>
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                </Link>
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Terms of Service
-                </a>
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                </Link>
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Cookie Policy
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -277,8 +277,8 @@ const ContactUsPage = () => {
                 </span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                Ready to transform your ideas into reality? Let's discuss your
-                project and explore how we can help you achieve your goals. 🚀
+                {`Ready to transform your ideas into reality? Let's discuss your
+                project and explore how we can help you achieve your goals. 🚀`}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 {stats.map((stat, index) => (
@@ -399,7 +399,7 @@ const ContactUsPage = () => {
                   <div className="mb-6 bg-green-500/10 border border-green-500/30 rounded-lg p-4 flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
                     <span className="text-green-400">
-                      Message sent successfully! We'll get back to you soon.
+                      {`Message sent successfully! We'll get back to you soon.`}
                     </span>
                   </div>
                 )}
@@ -589,14 +589,14 @@ const ContactUsPage = () => {
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
-                      <a
+                      <Link
                         key={index}
                         href={social.url}
                         className={`flex items-center justify-center p-4 bg-gray-700/50 rounded-lg border border-gray-600 hover:border-gray-500 transition-all transform hover:scale-105 ${social.color}`}
                       >
                         <div className="mr-2">{social.icon}</div>
                         <span className="font-medium">{social.name}</span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -720,18 +720,18 @@ const ContactUsPage = () => {
                 <span className="ml-3 text-xl font-bold">SoftWare</span>
               </div>
               <p className="text-gray-400 mb-4">
-                Ready to transform your digital presence? Let's build something
-                amazing together.
+                {`Ready to transform your digital presence? Let's build something
+                amazing together.`}
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
-                  <a
+                  <Link
                     key={index}
                     href={social.url}
                     className={`text-gray-400 transition-colors ${social.color}`}
                   >
                     {social.icon}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -740,24 +740,36 @@ const ContactUsPage = () => {
               <h3 className="font-semibold mb-4 text-white">Services</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Web Development
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Mobile Apps
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Cloud Solutions
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     AI Integration
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -788,19 +800,29 @@ const ContactUsPage = () => {
           <div className="border-t border-gray-800 mt-8 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm mb-4 md:mb-0">
-                &copy; 2025 SoftWare. All rights reserved. Let's build the
-                future together.
+                &copy;{" "}
+                {`2025 SoftWare. All rights reserved. Let's build the
+                future together.`}
               </p>
               <div className="flex space-x-6 text-sm text-gray-400">
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Privacy Policy
-                </a>
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                </Link>
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Terms of Service
-                </a>
-                <a href="#" className="hover:text-blue-400 transition-colors">
+                </Link>
+                <Link
+                  href="#"
+                  className="hover:text-blue-400 transition-colors"
+                >
                   Cookie Policy
-                </a>
+                </Link>
               </div>
             </div>
           </div>

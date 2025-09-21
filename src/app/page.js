@@ -177,13 +177,13 @@ const TechWebsite = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-gray-900 border-t border-gray-800">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a
+              <Link
                 href="#home"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -194,19 +194,19 @@ const TechWebsite = () => {
                 className="hover:text-blue-400 transition-colors"
               >
                 Services
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#about"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 About
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#contact"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 Contact
-              </a>
+              </Link>
               <button className="w-full text-left bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-2 rounded-md mt-2">
                 Get Started
               </button>
@@ -394,7 +394,7 @@ const TechWebsite = () => {
                         ))}
                       </div>
                       <p className="text-gray-300 text-lg mb-6 italic">
-                        "{testimonial.content}"
+                        {testimonial.content}
                       </p>
                       <div>
                         <p className="font-semibold text-white">
@@ -431,8 +431,8 @@ const TechWebsite = () => {
               Ready to Start Your Next Project?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Let's discuss how we can help transform your ideas into reality
-              with cutting-edge technology solutions.
+              {`Let's discuss how we can help transform your ideas into reality
+              with cutting-edge technology solutions.`}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -468,24 +468,36 @@ const TechWebsite = () => {
               <h3 className="font-semibold mb-4">Services</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Web Development
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Mobile Apps
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Cloud Solutions
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     AI Integration
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -493,27 +505,36 @@ const TechWebsite = () => {
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a
+                  <Link
                     href="/aboutus"
                     className="hover:text-blue-400 transition-colors"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Careers
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Blog
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -521,27 +542,36 @@ const TechWebsite = () => {
               <h3 className="font-semibold mb-4">Connect</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a
+                  <Link
                     href="https://www.linkedin.com/in/kaklotar-chetan/"
                     className="hover:text-blue-400 transition-colors"
                   >
                     LinkedIn
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Twitter
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     GitHub
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-blue-400 transition-colors"
+                  >
                     Discord
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
