@@ -178,31 +178,32 @@ const TechWebsite = () => {
           <div className="md:hidden bg-gray-900 border-t border-gray-800">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
-                href="#home"
+                href="/"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 Home
               </Link>
               <Link
-                href="#"
+                href=""
                 onClick={(e) => {
                   e.preventDefault();
+                  setIsMenuOpen(false);
                   document
                     .getElementById("services")
                     .scrollIntoView({ behavior: "smooth" });
                 }}
-                className="hover:text-blue-400 transition-colors"
+                className="block px-3 py-2 hover:text-blue-400 transition-colors"
               >
                 Services
               </Link>
               <Link
-                href="#about"
+                href="/aboutus"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 About
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="block px-3 py-2 hover:bg-gray-800 rounded-md"
               >
                 Contact

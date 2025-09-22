@@ -17,7 +17,9 @@ import {
   Lightbulb,
   TrendingUp,
   Clock,
+  X,
   MapPin,
+  Menu,
   Mail,
   Phone,
   Linkedin,
@@ -35,6 +37,16 @@ function handleTimelineButton() {
 const AboutUsPage = () => {
   const [isVisible, setIsVisible] = useState({});
   const [activeTab, setActiveTab] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -214,8 +226,8 @@ const AboutUsPage = () => {
   return (
     <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
       {/* Navigation - Same as main site */}
-      <nav className="fixed w-full z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <nav className="fixed w-full z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
+        <div className="flex justify-around items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-8 h-8 rounded-lg flex items-center justify-center">
@@ -250,9 +262,160 @@ const AboutUsPage = () => {
               </button>
             </div>
           </div>
-        </div>
-      </nav>
 
+          <div className="md:hidden">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+      {/* {isMenuOpen && (
+        <div className="md:hidden bg-gray-900 border-t border-gray-800">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link
+              href="/"
+              className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+            >
+              Home
+            </Link>
+            <Link
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("services")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
+              className="hover:text-blue-400 transition-colors"
+            >
+              Services
+            </Link>
+            <Link
+              href="/aboutus"
+              className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+            >
+              Contact
+            </Link>
+            <button className="w-full text-left bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-2 rounded-md mt-2">
+              Get Started
+            </button>
+          </div>
+        </div>
+      )}
+      </nav>  */}
+      <nav
+        // className="fixed w-full z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800"
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-gray-950/95 backdrop-blur-md border-b border-gray-800"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-8 h-8 rounded-lg flex items-center justify-center">
+                <Code className="w-5 h-5 text-white" />
+              </div>
+              <span className="ml-3 text-xl font-bold">SoftWare</span>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:block">
+              <div className="flex items-center space-x-8">
+                <Link
+                  href="/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Home
+                </Link>
+
+                <Link
+                  href="/#services"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/aboutus"
+                  className="text-blue-400 transition-colors"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Contact
+                </Link>
+                <button className="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105">
+                  Get Started
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-gray-900 border-t border-gray-800">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <Link
+                href="/"
+                className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+              >
+                Home
+              </Link>
+              <Link
+                href="/#services"
+                className="block px-3 py-2 hover:text-blue-400 transition-colors"
+              >
+                Services
+              </Link>
+              <Link
+                href="/aboutus"
+                className="block px-3 py-2 blue-400 hover:bg-gray-800 rounded-md"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className="block px-3 py-2 hover:bg-gray-800 rounded-md"
+              >
+                Contact
+              </Link>
+              <button className="w-full text-left bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-2 rounded-md mt-2">
+                Get Started
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
       {/* Hero Section */}
       <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20"></div>
@@ -320,7 +483,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Our Story Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
@@ -414,7 +576,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Mission & Vision */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -480,7 +641,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Core Values */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
@@ -531,7 +691,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Team Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -640,7 +799,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Timeline Section */}
       <section
         className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50"
@@ -706,7 +864,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center" data-animate id="cta">
@@ -737,7 +894,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-800 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -900,7 +1056,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </footer>
-
       {/* Custom Styles */}
       <style jsx>{`
         @keyframes fadeInUp {
